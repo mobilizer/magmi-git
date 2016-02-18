@@ -294,6 +294,11 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
                 case "Unirgy_Dropship_Model_Vendor_Source":
                     $ovalue = $this->getUdropshipVendorId($ivalue);
                     break;
+                // if udropship_calculate_rates hast custom source_model
+                case "udropship/productAttributeSource_calculateRates":
+                    $rates = Array("Vendor Package" => '0', "Row Separate Rate" => '1', "Item Separate Rate" => '2' );
+                    if (!is_numeric($ovalue = $rates[$ivalue])) $ovalue = '';
+                    break;
                 // otherwise, standard option behavior
                 // get option id for value, create it if does not already exist
                 // do not insert if empty
